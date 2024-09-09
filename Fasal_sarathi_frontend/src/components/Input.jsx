@@ -10,7 +10,7 @@ const Input = ({
     const id = useId()
   return (
     <>
-    {label ? <label htmlFor={id} className='ml-2'>{label}</label> : null}
+    {label ? <label htmlFor={id} className='ml-2 mb-2'>{label}</label> : null}
     <input  type={type} className={`text-black outline-none px-5 ${className}`} {...props} ref={ref} id={id}/>
     </>
   )

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Button, Logo} from '../index.js'
 import {Link} from 'react-router-dom'
+import headerLogo from '../../assets/logo.png'
 
 const Header = () => {
     const [activeLink, setActiveLink] = useState(1);
@@ -24,12 +25,22 @@ const Header = () => {
         },
         {
             id: 3,
-            name: "About",
+            name: "History",
             path: "/#",
         },
         {
             id: 4,
-            name: "Contact",
+            name: "Centers",
+            path: "/#",
+        },
+        {
+            id: 5,
+            name: "Feedback",
+            path: "/#",
+        },
+        {
+            id: 6,
+            name: "Centers",
             path: "/#",
         },
         
@@ -37,18 +48,18 @@ const Header = () => {
 
     
   return (
-    <div className='w-full p-3'>
+    <div className='w-full p-3 sticky top-0 backdrop-blur-sm'>
         <div className='flex justify-around items-center'>
         <div className=''>
-            <Logo className={'w-28 h-24'}/>
+            <Logo className={'w-28 h-24'} imgUrl={headerLogo}/>
         </div>
         <div className='flex'>
             <ul className='flex gap-10 justify-center items-center font-semibold text-xl'>
                 {
                     navLink.map(({id, name, path}) => {
                         return (
-                            <li key={id} className={`text-black 
-                                ${activeLink === id ? 'underline decoration-4 underline-offset-8 text-[#06a751] transition-all' : ' hover:text-[#1ba84a]'} 
+                            <li key={id} className={`text-[#06a751] 
+                                ${activeLink === id ? 'underline decoration-4 underline-offset-8 text-[#06a751] transition-all' : ' hover:text-[#1ba84a] text-black'} 
                                 `}><Link to={path}  onClick={() => handleActive(id)}>{name}</Link></li>
                         )
                     })

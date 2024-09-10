@@ -6,11 +6,31 @@ const UserInputForm = () => {
   const { register, handleSubmit } = useForm();
 
   const handleUserInput = (data) => {
-    console.log("form-data: ",data);
+    console.log("form-data: ", data);
   };
 
-  const soilType = ["Select Soil type","hello", "world"];
-  const cropType = ["Select Crop type","hello", "world"];
+  const soilType = [
+    "Select Soil type",
+    "Sandy",
+    "Loamy",
+    "Black",
+    "Red",
+    "Clayey",
+  ];
+  const cropType = [
+    "Select Crop type",
+    "Maize",
+    "Sugarcane",
+    "Cotton",
+    "Tobacco",
+    "Paddy",
+    "Barley",
+    "Wheat",
+    "Millets",
+    "Oil seeds",
+    "Pulses",
+    "Ground Nuts",
+  ];
 
   return (
     <div className="w-full mb-16 ">
@@ -78,7 +98,6 @@ const UserInputForm = () => {
 
             <div className="col-span-2">
               <Select
-                
                 options={cropType}
                 {...register("Crop Type")}
                 className=" px-3 py-2 rounded-lg w-full"
@@ -90,8 +109,8 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Nitrogen(N)"}
                 {...register("Present N", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Nitrogen(N)"}
               />
@@ -102,8 +121,8 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Phosphorus(P)"}
                 {...register("Present P", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Phosphorus(P)"}
               />
@@ -113,8 +132,8 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Potassium(K)"}
                 {...register("Present K", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Potassium(K)"}
               />

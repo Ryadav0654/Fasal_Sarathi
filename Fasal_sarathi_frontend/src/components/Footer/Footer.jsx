@@ -4,7 +4,6 @@ import footerLogo from "../../assets/footer-logo.jpg";
 import { Link } from "react-router-dom";
 const Footer = () => {
   const navLink = [
-    
     {
       id: 1,
       name: "Blog",
@@ -38,23 +37,23 @@ const Footer = () => {
   ];
 
   return (
-    <div className="bg-[#055c43] p-10 w-full">
-      <div className="flex justify-around items-center w-[80%]">
+    <div className="bg-[#055c43] pt-4 pb-4 w-full">
+      <div className="flex justify-around  w-[80%]">
         <div>
-          <Logo className={"w-36 h-32"} imgUrl={footerLogo} />
+          <Link to={"/"}>
+            <Logo className={"w-32 h-28"} imgUrl={footerLogo} />
+          </Link>
         </div>
 
         <div className="flex">
-          <ul className="flex gap-8 justify-center items-center font-semibold ">
+          <ul className="flex gap-8  mt-6 font-semibold ">
             {navLink.map(({ id, name, path }) => {
               return (
                 <li
                   key={id}
                   className={`text-white hover:underline cursor-pointer`}
                 >
-                  <Link to={path}>
-                    {name}
-                  </Link>
+                  <Link to={path}>{name}</Link>
                 </li>
               );
             })}
@@ -62,11 +61,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-[-6px]">
+      <div className="mt-[-35px]">
         <div className="w-[80%] m-auto">
-        <p className="text-white text-center font-semibold ml-10">
-          Copyright © 2024. All rights reserved by Fasal Sarathi.
-        </p>
+          <p className="text-white text-center font-semibold ml-10">
+            Copyright © 2024. All rights reserved by Fasal Sarathi.
+          </p>
         </div>
       </div>
     </div>

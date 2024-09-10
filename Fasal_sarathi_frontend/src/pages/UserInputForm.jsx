@@ -6,23 +6,43 @@ const UserInputForm = () => {
   const { register, handleSubmit } = useForm();
 
   const handleUserInput = (data) => {
-    console.log("form-data: ",data);
+    console.log("form-data: ", data);
   };
 
-  const soilType = ["Select Soil type","hello", "world"];
-  const cropType = ["Select Crop type","hello", "world"];
+  const soilType = [
+    "Select Soil type",
+    "Sandy",
+    "Loamy",
+    "Black",
+    "Red",
+    "Clayey",
+  ];
+  const cropType = [
+    "Select Crop type",
+    "Maize",
+    "Sugarcane",
+    "Cotton",
+    "Tobacco",
+    "Paddy",
+    "Barley",
+    "Wheat",
+    "Millets",
+    "Oil seeds",
+    "Pulses",
+    "Ground Nuts",
+  ];
 
   return (
-    <div className="w-full mb-10 ">
+    <div className="w-full mb-16 ">
       <div className=" flex flex-col justify-center items-center">
         <h1 className="text-3xl font-extrabold py-6">
           Get Your Fertilizer Recommendations
         </h1>
         <form
           onSubmit={handleSubmit(handleUserInput)}
-          className="  bg-[#06a751] p-10 w-[70%] rounded-3xl text-white font-semibold"
+          className="  bg-green-400 p-10 w-[60%] rounded-2xl text-black font-semibold"
         >
-          <div className=" grid grid-cols-4 gap-8">
+          <div className=" grid grid-cols-4 gap-10">
             <div className="col-span-2">
               <Input
                 type={"number"}
@@ -58,10 +78,10 @@ const UserInputForm = () => {
               />
             </div>
 
-            <div className="col-span-2 flex items-center ml-16">
+            <div className="col-span-2 flex items-center ml-10 mt-5">
               <Button
                 className={
-                  "bg-[#0b6836] rounded-2xl border-none px-7 py-2 text-xl flex items-center justify-center font-normal text-white hover:bg-[#034633FF]"
+                  "bg-[#0b6836] rounded-xl border-none px-7 py-2  flex items-center  font-medium text-white hover:bg-[#034633FF]"
                 }
                 btnName={"Use current location"}
               ></Button>
@@ -78,7 +98,6 @@ const UserInputForm = () => {
 
             <div className="col-span-2">
               <Select
-                
                 options={cropType}
                 {...register("Crop Type")}
                 className=" px-3 py-2 rounded-lg w-full"
@@ -90,8 +109,8 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Nitrogen(N)"}
                 {...register("Present N", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Nitrogen(N)"}
               />
@@ -102,8 +121,8 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Phosphorus(P)"}
                 {...register("Present P", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Phosphorus(P)"}
               />
@@ -113,14 +132,14 @@ const UserInputForm = () => {
                 type={"number"}
                 placeholder={"Enter Potassium(K)"}
                 {...register("Present K", {
-                    required: true,
-                  })}
+                  required: true,
+                })}
                 className=" px-3 py-2 rounded-lg w-full"
                 label={"Potassium(K)"}
               />
             </div>
           </div>
-          <div className="mt-6 flex justify-center items-center">
+          <div className="mt-8 flex justify-center items-center">
             <Input
               className={
                 "bg-[#0b6836] rounded-full border-none px-7 py-3 text-xl flex cursor-pointer items-center justify-center font-semibold text-white hover:bg-[#034633FF]"

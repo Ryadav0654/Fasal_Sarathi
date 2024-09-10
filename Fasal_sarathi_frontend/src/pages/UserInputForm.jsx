@@ -29,7 +29,7 @@ const UserInputForm = () => {
     "Millets",
     "Oil seeds",
     "Pulses",
-    "Ground Nuts",
+    "Ground Nuts",
   ];
 
   return (

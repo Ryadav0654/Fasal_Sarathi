@@ -11,8 +11,8 @@ const predictionSchema = new Schema(
             type: Number,
             required: true,
         },
-        googleId:{
-            type:String,
+        Moisture:{
+            type:Number,
             unique:true
         },
         fullName: {
@@ -21,22 +21,42 @@ const predictionSchema = new Schema(
             trim: true, 
             index: true
         },
-        predictionHistory: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Video"
-            }
-        ],
-        password: {
-            type: String,
-            required: [true, 'Password is required']
+        owner:{
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required:true
         },
-        refreshToken: {
-            type: String
+        SoilType:{
+            type:String,
+            required:true
+        },
+        CropType:{
+            type:String,
+            required:true
+        },
+        PresentN:{
+            type:Number,
+            required:true
+        },
+        PresentP:{
+            type:Number,
+            required:true
+        },
+        PresentK:{
+            type:Number,
+            required:true
+        },
+        fertilizer_name:{
+            type:String,
+            required:true
+        },
+        fertilizer_quantity:{
+            type:Number,
+            required :true
         }
-
     },
     {
         timestamps: true
     }
 )
+export const Prediction = mongoose.model("Prediction", userSchema)

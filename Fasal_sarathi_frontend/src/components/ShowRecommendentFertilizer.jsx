@@ -37,7 +37,7 @@ const ShowRecommendentFertilizer = ({ setShowFertilizer, fert }) => {
             <h1 className="mt-3 font-semibold text-xl opacity-80">
               👉 Fertilizer Quantity:{" "}
               <span className="font-bold text-opacity-100">
-                {fert?.fertilizer_quantity} kg/hectare
+                {fert?.fertilizer_quantity}{" "} kg/hectare
               </span>
             </h1>
           </div>

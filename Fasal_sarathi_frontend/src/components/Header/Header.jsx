@@ -71,7 +71,7 @@ const Header = () => {
         </div>
         <div>
           <Button
-            btnName="Login"
+            btnname="Login"
             className={
               "bg-[#0b6836] rounded-full border-none px-8 py-3 text-xl flex items-center justify-center font-medium text-white hover:bg-[#034633FF] "
             }

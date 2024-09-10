@@ -8,10 +8,21 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const predictFertilizer = asyncHandler(async(req,res)=>{
-    const input_data=req.body.input_data
-    if(!input_data){
+    // const input_data=req.body.input_data
+    const {Temparature,Humidity,Moisture,Soil_Type,Crop_Type,PresentN,PresentP,PresentK}=req.body;
+    if(!Temparature||!Humidity||!Moisture||!Soil_Type||!Crop_Type||!PresentK||!PresentN||!PresentP){
         throw new Error("input_data is required ");  
     }
+    const input_data ={
+            "Temparature": Temparature,
+            "Humidity": Humidity,
+            "Moisture": Moisture,
+            "Soil Type": Soil_Type,
+            "Crop Type": Crop_Type,
+            "Present N": PresentN,
+            "Present P": PresentP,
+            "Present K": PresentK 		
+        }
     console.log(input_data)
     let options = {
         mode: 'text',

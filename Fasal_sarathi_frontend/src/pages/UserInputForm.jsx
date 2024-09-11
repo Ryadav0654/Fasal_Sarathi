@@ -62,19 +62,19 @@ const UserInputForm = () => {
       showFertilizer && <ShowFertilizer setShowFertilizer={setShowFertilizer} fert={recommendateFertilizer}/>
     }
     <div className="w-full mb-16 ">
-      <div className=" flex flex-col justify-center items-center">
-        <h1 className="text-4xl font-extrabold pt-3">
+      <div className=" flex flex-col justify-center items-center md:pt-5 ">
+        <h1 className="lg:text-4xl text-3xl font-extrabold pt-3 text-center">
           Get Your Fertilizer Recommendations
         </h1>
-        <p className="font-semibold text-xl pt-2 pb-4">
+        <p className="font-semibold md:text-xl text-center pt-2 pb-4">
           Please Enter the Following Details from soil test report.
         </p>
         <form
           onSubmit={handleSubmit(handleUserInput)}
-          className="  bg-green-400 p-10 w-[60%] rounded-2xl text-black font-semibold"
+          className="  bg-green-400 md:p-10 lg:w-[60%] md:w-[80%] m-3 p-4 rounded-xl md:rounded-2xl text-black font-semibold"
         >
-          <div className=" grid grid-cols-4 gap-5">
-            <div className="col-span-2">
+          <div className=" grid md:grid-cols-4 grid-cols-1 gap-5">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Temparature"}
@@ -90,7 +90,7 @@ const UserInputForm = () => {
               )}
             </div>
 
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Humidity"}
@@ -105,7 +105,7 @@ const UserInputForm = () => {
                 <p role="alert" className="text-red-500 font-medium">*Humidity is required</p>
               )}
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Moisture"}
@@ -121,15 +121,15 @@ const UserInputForm = () => {
               )}
             </div>
 
-            <div className="col-span-2 flex items-center ml-10 mt-5">
+            <div className="md:col-span-2 flex items-center md:ml-10 lg:mt-5">
               <Button
                 className={
-                  "bg-[#0b6836] rounded-xl border-none px-7 py-2  flex items-center  font-medium text-white hover:bg-[#034633FF]"
+                  "bg-[#0b6836] rounded-xl border-none lg:px-7 lg:py-2  py-2 px-3 flex items-center  md:font-medium text-white hover:bg-[#034633FF]"
                 }
                 btnname={"Use current location"}
               ></Button>
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Select
                 options={soilType}
                 placeholder={"Enter Your Email"}
@@ -140,7 +140,7 @@ const UserInputForm = () => {
               />
             </div>
 
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Select
                 options={cropType}
                 {...register("Crop_Type")}
@@ -148,7 +148,7 @@ const UserInputForm = () => {
                 label={"Select Crop type"}
               />
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Nitrogen(N)"}
@@ -166,7 +166,7 @@ const UserInputForm = () => {
               )}
             </div>
 
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Phosphorus(P)"}
@@ -183,7 +183,7 @@ const UserInputForm = () => {
                 <p role="alert" className="text-red-500 font-medium">*Phosphorus(P)  is required</p>
               )}
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <Input
                 type={"number"}
                 placeholder={"Enter Potassium(K)"}

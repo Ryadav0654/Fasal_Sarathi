@@ -20,7 +20,7 @@ const HomePage = () => {
             </p>
             <div className="mt-6">
               <Button
-                btnName="Click Here"
+                btnname="Click Here"
                 className={
                   "bg-[#0b6836] rounded-full border-none px-7 py-3 text-xl flex items-center justify-center font-semibold text-white hover:bg-[#034633FF]"
                 }

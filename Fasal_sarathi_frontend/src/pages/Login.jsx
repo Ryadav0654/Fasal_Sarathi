@@ -5,11 +5,26 @@ import bgImg from "../assets/bg-image1.jpg";
 import googleIcon from '../assets/google.svg'
 import facebookIcon from '../assets/facebook.svg'
 import { Link } from "react-router-dom";
+import { apiClient } from "../lib/api-client.js";
+import { LOGIN_URL, GOOGLE_LOGIN_URL} from "../utils/constrants.js";
 const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const handleLogin = (data) => {
     console.log("form-data: ", data);
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await apiClient.get(GOOGLE_LOGIN_URL);
+    console.log("google login", response);
+    } catch (error) {
+      console.error("google login error: ", error);
+    }
+    
+  };
+  const handleFacebookLogin = () => {
+    console.log("facebook login");
   };
 
   return (
@@ -64,7 +79,7 @@ const Login = () => {
             </div>
             <div className="mt-4 bg-black h-0.5"></div>
             <div className="flex justify-around mt-4 font-medium">
-                <div className="rounded-xl border-2 border-black py-1 px-4 flex items-center gap-2 cursor-pointer">
+                <div className="rounded-xl border-2 border-black py-1 px-4 flex items-center gap-2 cursor-pointer" onClick={handleGoogleLogin}>
                     <img src={googleIcon} alt=""className="w-7 h-7" />
                     <p>Google</p>
                 </div>

@@ -6,18 +6,20 @@ import { generateAccessAndRefereshTokens } from "../utils/generateTokens.js";
 
 const googleAuthRedirect = asyncHandler(async(req,res)=>{
     console.log("this is the first hit");
-    
+    const redirectUrl = req?.query?.redirectUrl;
     const redirectUri = `${process.env.BACKEND_URL}/auth/google/callback`;
     const clientId = process.env.GOOGLE_CLIENT_ID;
     const scope = 'profile email';
     const responseType = 'code';
-    const googleAuthUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&state=${encodeURIComponent(redirectUrl)}&prompt=consent`;
     console.log(googleAuthUrl)
     res.redirect(googleAuthUrl);
 })
 
 const googleAuthCallback= asyncHandler(async(req,res)=>{
     console.log("this is the second hit ");
+    const redirectUrl = req.query.state;
+    console.log(redirectUrl);
     
     const code = req.query.code;
     if(!code){
@@ -80,11 +82,12 @@ const googleAuthCallback= asyncHandler(async(req,res)=>{
     res
        .status(200)
        .cookie('accessToken', accessToken, options)
-       .cookie('refreshToken', refreshToken, options)
-       .redirect(`${process.env.FRONTEND_URL}/`);
+       .redirect(redirectUrl&&redirectUrl!=`${process.env.FRONTEND_URL}/login` ? `${decodeURIComponent(redirectUrl)}?status=success` : `${process.env.FRONTEND_URL}/?status=success`);
   } catch (error) {
     console.error('OAuth Error:', error);
-    res.status(500).send('Authentication failed');
+      res
+        .status(500)
+        .redirect(redirectUrl&&redirectUrl!=`${process.env.FRONTEND_URL}/login` ? `${decodeURIComponent(redirectUrl)}?status=failure` : `${process.env.FRONTEND_URL}/?status=failure`)
   }
 })
 

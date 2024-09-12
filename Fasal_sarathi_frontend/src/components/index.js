@@ -5,5 +5,20 @@ import Select from "./Select";
 import Card from "./Card";
 import ShowRecommendentFertilizer from "./ShowRecommendentFertilizer";
 import Testimonials from "./Testinomials";
-
-export {Button, Logo, Input, Select, Card, ShowRecommendentFertilizer, Testimonials}
+import PrivateRoute from "./PrivateRoute";
+import LoadingPage from "./LoadingPage";
+import ErrorPage from "./ErrorPage";
+import ProfileDropdown from "./ProfileDropdown";
+export {
+  Button,
+  Logo,
+  Input,
+  Select,
+  Card,
+  ShowRecommendentFertilizer,
+  Testimonials,
+  PrivateRoute,
+  LoadingPage,
+  ErrorPage,
+  ProfileDropdown
+};

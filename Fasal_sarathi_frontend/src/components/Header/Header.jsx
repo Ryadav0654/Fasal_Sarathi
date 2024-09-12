@@ -1,11 +1,15 @@
 import React,{ useState } from 'react';
-import { Button, Logo } from "../index.js";
+import { Button, Logo, ProfileDropdown } from "../index.js";
 import { Link, useNavigate } from "react-router-dom";
 import headerLogo from "../../assets/logo.png";
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/slice/authThunk.js';
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState(1);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.auth.accessToken);
   const handleActive = (id) => {
     setActiveLink(id);
   };
@@ -97,13 +101,28 @@ const Header = () => {
         </div>
 
         <div className="hidden md:block">
-          <Button
-            btnname="Login"
-            className={
-              "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
-            }
-            onClickHandler={() => navigate("/login")}
-          />
+          {
+            accessToken ? (
+            //    <Button
+            //   btnname="Logout"
+            //   className={
+            //     "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
+            //   }
+            //   onClickHandler={() => dispatch(logout())}
+            // />
+            <ProfileDropdown />
+          ):
+            (
+              <Button
+              btnname="Login"
+              className={
+                "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
+              }
+              onClickHandler={() => navigate("/login")}
+            />
+            )
+          }
+         
         </div>
       </div>
 
@@ -136,7 +155,9 @@ const Header = () => {
 
         
           <div className="mt-4 flex justify-center">
-            <Button
+            {
+              (!accessToken) ? ( 
+              <Button
               btnname="Login"
               className={
                 "bg-[#0b6836] rounded-full border-none px-6 py-2 text-lg text-white hover:bg-[#034633FF] "
@@ -146,6 +167,22 @@ const Header = () => {
                 setIsMobileMenuOpen(false); 
               }}
             />
+          ) :
+            (
+              <ProfileDropdown />
+            // <Button
+            //   btnname="Logout"
+            //   className={
+            //     "bg-[#0b6836] rounded-full border-none px-6 py-2 text-lg text-white hover:bg-[#034633FF] "
+            //   }
+            //   onClickHandler={() => {
+            //     dispatch(logout());
+            //     setIsMobileMenuOpen(false); 
+            //   }}
+            // />
+          )
+            }
+           
           </div>
         </div>
       )}

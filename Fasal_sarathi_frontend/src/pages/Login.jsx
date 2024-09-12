@@ -7,6 +7,7 @@ import facebookIcon from "../assets/facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/slice/authThunk.js";
+import { GOOGLE_LOGIN_ROUTE } from "../utils/constrants.js";
 
 const Login = () => {
   // const [user, setUser] = useState({});
@@ -44,6 +45,27 @@ const Login = () => {
       console.error("login error: ", error);
     }
   };
+
+  const handleGoogleLogin = async () => {
+    try {
+      const originalUrl = window.location.href;
+       window.location.href = `${import.meta.env.VITE_SERVER_URL}${GOOGLE_LOGIN_ROUTE}?redirectUrl=${encodeURIComponent(originalUrl)}`;
+      //  console.log("google login", res);
+      const queryParams = new URLSearchParams(window.location.search);
+      console.log("queryParams: ", queryParams);
+      
+      // Get the 'message' and 'token' parameters from the URL
+      // const message = queryParams.get('message');
+      // const token = queryParams.get('token');
+
+      
+    } catch (error) {
+
+      console.error("google login error: ", error);
+    }
+    
+  };
+
 
   const handleFacebookLogin = () => {
     console.log("facebook login");
@@ -153,7 +175,7 @@ const Login = () => {
                 <div className="flex justify-around mt-4 font-medium">
                   <div
                     className="rounded-xl border-2 border-black py-1 px-4 flex items-center gap-2 cursor-pointer"
-                    id="google-login-button"
+                    onClick={handleGoogleLogin}
                   >
                     <img src={googleIcon} alt="" className="w-7 h-7" />
                     <p>Google</p>

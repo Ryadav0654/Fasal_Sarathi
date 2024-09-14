@@ -104,11 +104,11 @@ const registerUser = asyncHandler( async (req, res) => {
   // remove password and refresh token field from response
   // check for user creation
   // return res
+ console.log("this is register hit ")
 
-
-  const {fullName, email, username, password } = req.body
+  const {fullName, email,  password } = req.body
   //console.log("email: ", email);
-
+  let username = await ensureUniqueUsername(fullName)
   if (
       [fullName, email, username, password].some((field) => field?.trim() === "")
   ) {
@@ -155,10 +155,10 @@ const loginUser = asyncHandler(async (req, res) =>{
   //access and referesh token
   //send cookie
 
-  const {email, username, password} = req.body
+  const {email, password} = req.body
   console.log(email);
 
-  if (!username && !email) {
+  if ( !email) {
       throw new Error("username or email is required")
   }
   
@@ -169,7 +169,7 @@ const loginUser = asyncHandler(async (req, res) =>{
   // }
 
   const user = await User.findOne({
-      $or: [{username}, {email}]
+      email
   })
 
   if (!user) {

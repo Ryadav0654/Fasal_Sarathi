@@ -55,17 +55,19 @@ const googleAuthCallback= asyncHandler(async(req,res)=>{
         throw new Error("Error while getting userInfoResponse from google api ");
         
     }
-
-    const { id, email, name } = userInfoResponse.data;
+    // console.log(userInfoResponse);
+    
+    const { id, email, name,picture } = userInfoResponse.data;
 
     // Find or create user in database
     let user = await User.findOne({ email });
     if (!user) {
       let username = await ensureUniqueUsername(name)
       console.log(username)
-      user = new User({ googleId: id, email, fullName: name,username });
+      user = new User({ googleId: id, email, fullName: name,username,picture });
       await user.save();
     }
+    console.log(user)
     // console.log(user._id)
 
     // Generate JWT token
@@ -179,6 +181,8 @@ const loginUser = asyncHandler(async (req, res) =>{
     throw new Error("User password is not set , maybe initial signup from google");
     
   }
+  console.log(user);
+  
 
  const isPasswordValid = await user.isPasswordCorrect(password)
 

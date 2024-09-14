@@ -32,6 +32,10 @@ const userSchema = new Schema(
             trim: true, 
             index: true
         },
+        picture:{
+            type:String,
+            default:"https://asset.cloudinary.com/campus-connect-web/361cf7795a450df31e76996c5822ae6f"
+        },
         predictionHistory: [
             {
                 type: Schema.Types.ObjectId,

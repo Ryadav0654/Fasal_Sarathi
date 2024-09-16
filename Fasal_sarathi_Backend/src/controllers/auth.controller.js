@@ -55,17 +55,19 @@ const googleAuthCallback= asyncHandler(async(req,res)=>{
         throw new Error("Error while getting userInfoResponse from google api ");
         
     }
-
-    const { id, email, name } = userInfoResponse.data;
+    // console.log(userInfoResponse);
+    
+    const { id, email, name,picture } = userInfoResponse.data;
 
     // Find or create user in database
     let user = await User.findOne({ email });
     if (!user) {
       let username = await ensureUniqueUsername(name)
       console.log(username)
-      user = new User({ googleId: id, email, fullName: name,username });
+      user = new User({ googleId: id, email, fullName: name,username,picture });
       await user.save();
     }
+    console.log(user)
     // console.log(user._id)
 
     // Generate JWT token
@@ -104,11 +106,11 @@ const registerUser = asyncHandler( async (req, res) => {
   // remove password and refresh token field from response
   // check for user creation
   // return res
+ console.log("this is register hit ")
 
-
-  const {fullName, email, username, password } = req.body
+  const {fullName, email,  password } = req.body
   //console.log("email: ", email);
-
+  let username = await ensureUniqueUsername(fullName)
   if (
       [fullName, email, username, password].some((field) => field?.trim() === "")
   ) {
@@ -155,10 +157,10 @@ const loginUser = asyncHandler(async (req, res) =>{
   //access and referesh token
   //send cookie
 
-  const {email, username, password} = req.body
+  const {email, password} = req.body
   console.log(email);
 
-  if (!username && !email) {
+  if ( !email) {
       throw new Error("username or email is required")
   }
   
@@ -169,7 +171,7 @@ const loginUser = asyncHandler(async (req, res) =>{
   // }
 
   const user = await User.findOne({
-      $or: [{username}, {email}]
+      email
   })
 
   if (!user) {
@@ -179,6 +181,8 @@ const loginUser = asyncHandler(async (req, res) =>{
     throw new Error("User password is not set , maybe initial signup from google");
     
   }
+  console.log(user);
+  
 
  const isPasswordValid = await user.isPasswordCorrect(password)
 

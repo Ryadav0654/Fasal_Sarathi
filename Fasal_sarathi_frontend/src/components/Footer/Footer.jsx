@@ -46,7 +46,7 @@ const Footer = () => {
     </div>
 
     <div className=" w-full md:w-auto flex justify-center md:justify-end">
-      <ul className="flex gap-4 md:gap-6 lg:gap-8 flex-wrap justify-start md:font-semibold text-center text-xl ">
+      <ul className="flex gap-4 md:gap-6 lg:gap-8 flex-wrap justify-start md:font-semibold text-center text-sm lg:text-xl ">
         {navLink.map(({ id, name, path }) => {
           return (
             <li key={id} className="text-white hover:underline cursor-pointer">
@@ -59,7 +59,7 @@ const Footer = () => {
     <div>
     <Button
                 btnname="Click Here"
-                className="bg-[#0f944d] rounded-full border-none px-5 lg:px-7 py-3 text-lg lg:text-xl font-semibold text-white hover:bg-[#034633FF] hidden md:flex items-center justify-center "
+                className="bg-[#0f944d] rounded-full border-none px-5 lg:px-7 py-3 text-sm lg:text-xl font-semibold text-white hover:bg-[#034633FF] hidden md:flex items-center justify-center "
                 onClickHandler={() => {
                   navigate("/user-input-form");
                 }}

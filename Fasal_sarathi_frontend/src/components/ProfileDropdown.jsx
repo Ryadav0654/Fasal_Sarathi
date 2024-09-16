@@ -49,13 +49,13 @@ const ProfileDropdown = ({ user, onLogout }) => {
           <div className="py-1">
             <Link
               to="/#"
-              className="block px-4 py-2  text-sm text-gray-700 hover:bg-gray-100 font-medium"
+              className="block px-4 py-2  text-lg text-gray-700  hover:bg-gray-100 font-medium"
             >
               Dashboard
             </Link>
             <button
               onClick={() => dispatch(logout())}
-              className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 font-medium"
+              className="w-full text-left px-4 py-2 text-lg  text-red-600 hover:bg-gray-100 font-medium"
             >
               Logout
             </button>

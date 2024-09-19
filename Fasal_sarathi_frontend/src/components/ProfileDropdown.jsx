@@ -2,11 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/slice/authThunk";
 import { useDispatch, useSelector } from "react-redux";
+import { apiClient } from "../lib/api-client";
+import profile_pic from "../assets/Profile_pic.png";
 
 const ProfileDropdown = () => {
     const dispatch = useDispatch();
     
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState({});
   const dropdownRef = useRef(null);
 
 
@@ -30,17 +33,37 @@ useEffect(() => {
   }, [dropdownOpen]);
 
  
+useEffect(() => {
+  (async () =>{
+    try {
+      const userdata = await apiClient.get("/api/v1/auth/getCurrUser", {
+        withCredentials: true,
+      });
+      if(userdata.data)
+        {
+          setUserData(userdata.data.user);
+        } 
+      // console.log( userdata.data.user );
+      
+    } catch (error) {
+      console.log("userdata error", error);
+    }
+  })();
+
+}, []);
+
+
 
   return (
     <div className="relative inline-block text-left">
       {/* Profile Picture */}
       <div onClick={toggleDropdown} className="cursor-pointer flex items-center space-x-2 border-2 border-green-500 rounded-full ">
         <img
-          src={  "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg"}
+          src={ profile_pic || userData?.picture}
           alt="Profile"
           className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-green-500"
         />
-        <span className="hidden md:block text-lg font-semibold text-gray-700 pr-3">{"Ravindra"}</span>
+        <span className="hidden md:block text-lg font-semibold text-gray-700 pr-3">{userData?.fullName?.split(" ")[0]}</span>
       </div>
 
       {/* Dropdown */}

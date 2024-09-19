@@ -22,13 +22,13 @@ const Header = () => {
     },
     {
       id: 2,
-      name: "Blog",
+      name: "Blogs",
       path: "/#",
     },
     {
       id: 3,
       name: "History",
-      path: "/#",
+      path: "/history",
     },
     {
       id: 4,

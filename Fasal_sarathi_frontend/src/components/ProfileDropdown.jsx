@@ -63,7 +63,7 @@ useEffect(() => {
         <img
           src={ userData?.picture}
           alt="Profile"
-          className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-green-500"
+          className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white"
         />
         <span className="hidden md:block text-lg font-semibold text-gray-700 pr-3">{userData?.fullName?.split(" ")[0]}</span>
       </div>
@@ -76,7 +76,7 @@ useEffect(() => {
         >
           <div className="py-1">
             <Link
-              to="/#"
+              to="/dashboard"
               className="block px-4 py-2  text-lg text-gray-700  hover:bg-gray-100 font-medium"
             >
               Dashboard

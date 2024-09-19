@@ -1,12 +1,34 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Button,  Testimonials } from "../components/index.js";
 import { useNavigate } from "react-router-dom";
 import FeedbackForm from "../components/FeedbackForm.jsx";
-
+import { apiClient } from "../lib/api-client.js";
+import { CURRENT_USER_ROUTES } from "../utils/constrants.js";
 const HomePage = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () =>{
+      try {
+        const userdata = await apiClient.get(CURRENT_USER_ROUTES, {
+          withCredentials: true,
+        });
+        if(userdata.data)
+          {
+            localStorage.setItem('accessToken', userdata.data.accessToken);  
+            navigate("/");   
+          } 
+        console.log( userdata.data.user );
+        
+      } catch (error) {
+        console.log("userdata error", error);
+      }
+    })();
+  
+  }, []);
+
   return (
     <>
       <Header />

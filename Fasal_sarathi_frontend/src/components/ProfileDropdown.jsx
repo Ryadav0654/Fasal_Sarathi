@@ -1,14 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/slice/authThunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-const ProfileDropdown = ({ user, onLogout }) => {
+const ProfileDropdown = () => {
     const dispatch = useDispatch();
+    
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Function to toggle the dropdown
+
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   // Close dropdown when clicking outside
@@ -19,7 +20,7 @@ const ProfileDropdown = ({ user, onLogout }) => {
   };
 
   // Effect to handle outside click
-  React.useEffect(() => {
+useEffect(() => {
     if (dropdownOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
@@ -27,6 +28,8 @@ const ProfileDropdown = ({ user, onLogout }) => {
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [dropdownOpen]);
+
+ 
 
   return (
     <div className="relative inline-block text-left">

@@ -83,6 +83,7 @@ const googleAuthCallback= asyncHandler(async(req,res)=>{
     
     res
        .status(200)
+       .cookie("refreshToken", refreshToken, options)
        .cookie('accessToken', accessToken, options)
        .redirect(redirectUrl&&redirectUrl!=`${process.env.FRONTEND_URL}/login` ? `${decodeURIComponent(redirectUrl)}?status=success` : `${process.env.FRONTEND_URL}/?status=success`);
   } catch (error) {
@@ -231,7 +232,32 @@ const logoutUser = asyncHandler(async(req, res) => {
   .json({})
 })
 
+const getCurrUser=asyncHandler(async(req,res)=>{
+    const userId=req.user._id;
+    if(!userId){
+        throw new Error("userId is not present");  
+    }
+    const user = await User.findById(userId)
+    if (!user) {
+        throw new Error("User does not exist")
+    }
+    const {accessToken, refreshToken} = await generateAccessAndRefereshTokens(user._id)
+
+    const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+    .status(200)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json(  {user: loggedInUser, accessToken, refreshToken})   
+})
 
 
 
-export {googleAuthCallback,googleAuthRedirect,registerUser,loginUser,logoutUser};
+
+export {googleAuthCallback,googleAuthRedirect,registerUser,loginUser,logoutUser,getCurrUser};

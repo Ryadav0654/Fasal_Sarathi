@@ -13,13 +13,7 @@ const predictionSchema = new Schema(
         },
         Moisture:{
             type:Number,
-            unique:true
-        },
-        fullName: {
-            type: String,
-            required: true,
-            trim: true, 
-            index: true
+            required:true
         },
         owner:{
             type: Schema.Types.ObjectId,
@@ -59,4 +53,4 @@ const predictionSchema = new Schema(
         timestamps: true
     }
 )
-export const Prediction = mongoose.model("Prediction", userSchema)
+export const Prediction = mongoose.model("Prediction", predictionSchema)

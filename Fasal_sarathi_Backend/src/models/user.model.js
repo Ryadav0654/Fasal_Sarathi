@@ -39,7 +39,7 @@ const userSchema = new Schema(
         predictionHistory: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Video"
+                ref: "Prediction"
             }
         ],
         password: {

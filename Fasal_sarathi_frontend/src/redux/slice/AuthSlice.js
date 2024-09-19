@@ -44,23 +44,21 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state) => {
         state.loading = false;
       })
-     
-    //   .addCase(getUserData.pending, (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase(getUserData.fulfilled, (state, action) => {
-    //     console.log("getuserData_action", action.payload);
+      // .addCase(getUserData.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(getUserData.fulfilled, (state, action) => {
+      //   console.log("getuserData_action", action.payload);
+ 
+      //   console.log("userdata_user", action.payload.data);
         
-        
-    //     console.log("userdata_user", action.payload.data);
-        
-    //     state.loading = false;
-    //     state.userData = action.payload.data;
-    //     // state.accessToken = accessToken;
-    //   })
-    //   .addCase(getUserData.rejected, (state) => {
-    //     state.loading = false;
-    //   })
+      //   state.loading = false;
+      //   state.userData = action.payload.data;
+      //   // state.accessToken = accessToken;
+      // })
+      // .addCase(getUserData.rejected, (state) => {
+      //   state.loading = false;
+      // })
       .addCase(logout.fulfilled, (state) => {
         state.loading = false;
         state.userData = {};

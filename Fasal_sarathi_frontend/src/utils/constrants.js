@@ -6,3 +6,4 @@ export const LOGIN_ROUTE = "/api/v1/auth/login";
 export const REGISTER_ROUTE = "/api/v1/auth/register";
 export const LOGOUT_ROUTE = "/api/v1/auth/logout";
 export const GOOGLE_LOGIN_ROUTE = "/api/v1/auth/google";
+export const CURRENT_USER_ROUTES = "/api/v1/auth/getCurrUser"

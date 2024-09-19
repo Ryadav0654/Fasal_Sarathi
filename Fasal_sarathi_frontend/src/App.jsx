@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes,  Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import UserInputForm from "./pages/UserInputForm";
 import Container from "./components/Container/Container";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+
 import { PrivateRoute } from "./components/index.js";
+
 
 function App() {
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -16,6 +17,8 @@ function App() {
   const AuthRoute = ({ children }) => {
     return !accessToken ? children : <Navigate to="/" />;
   };
+
+
 
   return (
     <BrowserRouter>

@@ -4,6 +4,7 @@ import { logout } from "../redux/slice/authThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { apiClient } from "../lib/api-client";
 import profile_pic from "../assets/Profile_pic.png";
+import { CURRENT_USER_ROUTES } from "../utils/constrants";
 
 const ProfileDropdown = () => {
     const dispatch = useDispatch();
@@ -36,14 +37,15 @@ useEffect(() => {
 useEffect(() => {
   (async () =>{
     try {
-      const userdata = await apiClient.get("/api/v1/auth/getCurrUser", {
+      const userdata = await apiClient.get(CURRENT_USER_ROUTES, {
         withCredentials: true,
       });
       if(userdata.data)
         {
           setUserData(userdata.data.user);
+          
         } 
-      // console.log( userdata.data.user );
+      console.log( userdata.data.user );
       
     } catch (error) {
       console.log("userdata error", error);
@@ -59,7 +61,7 @@ useEffect(() => {
       {/* Profile Picture */}
       <div onClick={toggleDropdown} className="cursor-pointer flex items-center space-x-2 border-2 border-green-500 rounded-full ">
         <img
-          src={ profile_pic || userData?.picture}
+          src={ userData?.picture}
           alt="Profile"
           className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-green-500"
         />

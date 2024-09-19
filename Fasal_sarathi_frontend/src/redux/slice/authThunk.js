@@ -26,8 +26,8 @@ export const login = createAsyncThunk("auth/login", async (payload) => {
     });
 
     console.log({ response });
-    const {refreshToken, accessToken} = response.data;
-    setToken(accessToken, refreshToken);
+    const { accessToken} = response.data;
+    setToken(accessToken);
 
     if (response) {
       return response;

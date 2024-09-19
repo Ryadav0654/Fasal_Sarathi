@@ -5,7 +5,7 @@ import bgImg from "../assets/bg-image1.jpg";
 import googleIcon from "../assets/google.svg";
 import facebookIcon from "../assets/facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../redux/slice/authThunk.js";
 import { GOOGLE_LOGIN_ROUTE } from "../utils/constrants.js";
 
@@ -52,18 +52,11 @@ const Login = () => {
        window.location.href = `${import.meta.env.VITE_SERVER_URL}${GOOGLE_LOGIN_ROUTE}?redirectUrl=${encodeURIComponent(originalUrl)}`;
       //  console.log("google login", res);
       const queryParams = new URLSearchParams(window.location.search);
-      console.log("queryParams: ", queryParams);
-      
-      // Get the 'message' and 'token' parameters from the URL
-      // const message = queryParams.get('message');
-      // const token = queryParams.get('token');
-
-      
+      console.log("queryParams: ", queryParams); 
     } catch (error) {
 
       console.error("google login error: ", error);
     }
-    
   };
 
 

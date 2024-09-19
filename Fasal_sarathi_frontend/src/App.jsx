@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes,  Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -9,6 +9,8 @@ import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
 
 import { PrivateRoute } from "./components/index.js";
+import HistoryPage from "./pages/History.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 
 function App() {
@@ -42,11 +44,32 @@ function App() {
         />
 
         <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              
+                <Dashboard />
+             
+            </PrivateRoute>
+          }
+        />
+
+        <Route
           path="/user-input-form"
           element={
             <PrivateRoute>
               <Container>
                 <UserInputForm />
+              </Container>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <PrivateRoute>
+              <Container>
+                <HistoryPage/>
               </Container>
             </PrivateRoute>
           }

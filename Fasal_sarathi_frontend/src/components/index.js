@@ -9,6 +9,9 @@ import PrivateRoute from "./PrivateRoute";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
 import ProfileDropdown from "./ProfileDropdown";
+import TypedAnimation from "./TypedAnimation";
+
+
 export {
   Button,
   Logo,
@@ -20,5 +23,6 @@ export {
   PrivateRoute,
   LoadingPage,
   ErrorPage,
-  ProfileDropdown
+  ProfileDropdown,
+  TypedAnimation
 };

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import FeedbackForm from "../components/FeedbackForm.jsx";
 import { apiClient } from "../lib/api-client.js";
 import { CURRENT_USER_ROUTES } from "../utils/constrants.js";
+import TypedAnimation from "../components/TypedAnimation.jsx";
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -18,9 +19,9 @@ const HomePage = () => {
         if(userdata.data)
           {
             localStorage.setItem('accessToken', userdata.data.accessToken);  
-            navigate("/");   
+              
           } 
-        console.log( userdata.data.user );
+        // console.log( userdata.data.user );
         
       } catch (error) {
         console.log("userdata error", error);
@@ -40,7 +41,8 @@ const HomePage = () => {
            
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-center w-[90%] md:w-[70%] lg:w-[65%] leading-tight lg:leading-snug xl:leading-snug">
               Boost Crop Yield, Sustainably with{" "}
-              <span className="text-[#06a751]">Fasal Sarathi.</span>
+              {/* <span className="text-[#06a751]">Fasal Sarathi.</span> */}
+              <TypedAnimation className="text-[#06a751]"/>
             </h1>
 
             

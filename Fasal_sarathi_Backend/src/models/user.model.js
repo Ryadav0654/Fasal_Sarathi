@@ -34,7 +34,7 @@ const userSchema = new Schema(
         },
         picture:{
             type:String,
-            default:"https://asset.cloudinary.com/campus-connect-web/361cf7795a450df31e76996c5822ae6f"
+            default:"https://res.cloudinary.com/campus-connect-web/image/upload/v1723035802/defauld_profile_pic_xlsoua.png"
         },
         predictionHistory: [
             {

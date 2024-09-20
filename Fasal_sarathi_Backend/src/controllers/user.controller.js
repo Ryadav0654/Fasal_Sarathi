@@ -12,7 +12,7 @@ const getPredictionHistory =asyncHandler(async(req,res)=>{
         throw new Error("user data not found "); 
     }
     // console.log(user)
-    res.status(200).json({ predictions: user.predictionHistory });
+    res.status(200).json({ predictions: user.predictionHistory.reverse() });
 })
 
 export {getPredictionHistory}

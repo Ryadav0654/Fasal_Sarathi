@@ -31,22 +31,22 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div className="relative w-full min-h-screen bg-[size:6rem_4rem] bg-white  bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)]  ">
       <Header />
 
-      <div className="w-full">
+      <div className="w-full ">
         
-        <div className="h-[35vh] md:h-[33vh] lg:h-[46vh] xl:h-[50vh] w-full">
+        <div className="h-[35vh] md:h-[33vh] lg:h-[46vh] xl:h-[70vh] w-full">
           <div className="flex flex-col items-center justify-center h-full px-4">
            
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-center w-[90%] md:w-[70%] lg:w-[65%] leading-tight lg:leading-snug xl:leading-snug">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-7xl font-extrabold text-center w-[90%] md:w-[70%] lg:w-[65%] leading-tight lg:leading-snug xl:leading-snug">
               Boost Crop Yield, Sustainably with{" "}
               {/* <span className="text-[#06a751]">Fasal Sarathi.</span> */}
               <TypedAnimation className="text-[#06a751]"/>
             </h1>
 
             
-            <p className="text-xl md:text-2xl lg:text-2xl font-semibold text-center leading-normal mt-1 px-2">
+            <p className="text-xl md:text-2xl lg:text-2xl font-semibold text-center leading-normal mt-1 px-2 text-black/75">
               Get Your Fertilizer Recommendations Now.
             </p>
 
@@ -83,7 +83,7 @@ const HomePage = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

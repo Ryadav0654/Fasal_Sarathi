@@ -66,7 +66,7 @@ const Dashboard = () => {
   if (error) {
     return <ErrorPage />;
   }
-
+  
   // Bar chart data for Nutrients (N, P, K)
   const nutrientChartData = {
     labels: ["Nitrogen (N)", "Phosphorus (P)", "Potassium (K)"],
@@ -93,6 +93,8 @@ const Dashboard = () => {
     ],
   };
 
+  
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen lg:fixed lg:top-0 lg:w-full">
       {/* Left Sidebar */}
@@ -105,6 +107,7 @@ const Dashboard = () => {
             src={user?.picture || "https://via.placeholder.com/150"}
             alt="User Profile"
           />
+         
           <h3 className="text-lg font-semibold">
             {user?.fullName || "User Name"}
           </h3>

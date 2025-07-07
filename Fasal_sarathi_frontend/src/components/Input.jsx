@@ -2,12 +2,11 @@ import React, {useId} from 'react'
 
 const Input = ({
     label,
-  
     className="",
     type,
     ...props
 }, ref) => {
-    const id = useId()
+    const id = useId();
   return (
     <>
     {label ? <label htmlFor={id} className='lg:ml-2 lg:mb-2 '>{label}</label> : null}

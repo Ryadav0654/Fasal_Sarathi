@@ -37,13 +37,13 @@ const Header = () => {
     },
     {
       id: 5,
-      name: "Feedback",
+      name: "Gallery",
       path: "/#",
     },
   ];
 
   return (
-    <div className="w-full p-3 xl:px-32 lg:px-16 md:px-8 sticky top-0 backdrop-blur-sm z-50">
+    <div className="w-full p-3 xl:px-32 lg:px-16 md:px-8 sticky top-0 backdrop-blur-sm z-50 bg-transparent">
       <div className="flex justify-between items-center">
 
         <div className="flex-shrink-0">

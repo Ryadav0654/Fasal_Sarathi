@@ -61,7 +61,7 @@ useEffect(() => {
       {/* Profile Picture */}
       <div onClick={toggleDropdown} className="cursor-pointer flex items-center space-x-2 border-2 border-green-500 rounded-full ">
         <img
-          src={ userData?.picture}
+          src={ "https://lh3.googleusercontent.com/ogw/AF2bZyhKTjLD9n91GRSrFuDUz5_8jLwZamHI0LEj4xnKk15faA=s32-c-mo" ||userData?.picture}
           alt="Profile"
           className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white"
         />

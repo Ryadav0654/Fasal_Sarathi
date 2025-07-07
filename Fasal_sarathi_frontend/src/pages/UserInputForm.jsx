@@ -29,6 +29,7 @@ const UserInputForm = () => {
     setError(false);
     setLoading(true);
     try {
+
       const response = await apiClient.post(PREDICTION_FERTILIZER_URL, data, {
         withCredentials: true,
       });

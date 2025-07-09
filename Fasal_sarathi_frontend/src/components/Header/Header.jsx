@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Logo, ProfileDropdown } from "../index.js";
 import { Link, useNavigate } from "react-router-dom";
-import headerLogo from "../../assets/logo.png";
+import headerLogo from "../../assets/logo-img2.png";
 import { useSelector } from 'react-redux';
 // import { logout } from '../../redux/slice/authThunk.js';
 
@@ -33,12 +33,17 @@ const Header = () => {
     },
     {
       id: 4,
-      name: "Centers",
-      path: "/#",
+      name: "Feedback",
+      path: "/feedback",
     },
     {
       id: 5,
       name: "Gallery",
+      path: "/gallery",
+    },
+    {
+      id: 6,
+      name: "Centers",
       path: "/#",
     },
   ];

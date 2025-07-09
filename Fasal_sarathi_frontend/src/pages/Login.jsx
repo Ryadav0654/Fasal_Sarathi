@@ -70,20 +70,20 @@ const Login = () => {
       {error ? (
         <ErrorPage />
       ) : (
-        <div className="w-full lg:h-screen">
+        <div className="w-full lg:h-screen bg-gradient-to-br from-green-200 via-[#FFF9E3] to-[#faf5e4d2]">
           <div className="w-full h-full flex justify-center items-center py-16 lg:py-32 px-4 md:px-14 lg:px-20 xl:px-28">
             <div className="lg:w-[80%] w-full h-full bg-green-200 rounded-2xl flex flex-col lg:flex-row justify-between shadow-lg shadow-emerald-300">
               {/* Form Section */}
               <div className="lg:w-[45%] w-full py-10 md:px-8 px-6">
-                <h1 className="md:text-5xl text-4xl font-extrabold text-center leading-tight">
-                  Welcome to{" "}
-                  <span className="text-[#06a751]">Fasal Sarathi</span>
+                <h1 className="md:text-5xl text-4xl font-extrabold text-center leading-snug">
+                  Welcome Back to{" "}
+                  <a href="/" className="text-[#06a751]">Fasal Sarathi</a>
                 </h1>
 
                 {/* Form */}
                 <form
                   onSubmit={handleSubmit(handleLogin)}
-                  className="mt-6 md:px-3 px-2"
+                  className="mt-6 md:px-3 px-2 py-4"
                 >
                   <div className="font-semibold flex flex-col gap-6">
                     {/* Email Input */}

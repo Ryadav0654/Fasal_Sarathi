@@ -1,121 +1,125 @@
-import React, { useRef } from "react";
-import { Card } from "./index.js";
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const Testimonials = () => {
-  const scrollRef = useRef(null);
-
-  const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
-
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   const testimonials = [
     {
       name: "Rajesh Kumar",
-      state: "Uttar Pradesh",
-      occ: "Farmer",
-      msg: "Fasal Sarathi has been a game-changer for my farming practices. With its accurate fertilizer recommendations, my crop yield has increased by 20%. I no longer waste money on unnecessary fertilizers, and my soil health has improved significantly."
+      location: "Punjab, India",
+      image: "https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
+      quote: "Fasal-Sarathi transformed my farming. The AI recommendations increased my wheat yield by 30% while reducing fertilizer costs. It's like having an agricultural expert in my pocket!",
+      crop: "Wheat Farmer"
     },
     {
-      name: "Anjali Sharma",
-      state: "Maharashtra",
-      occ: "Commercial Farmer",
-      msg: "Fasal Sarathi is a fantastic tool for farmers and agricultural advisors. It provides precise fertilizer recommendations based on soil health and crop type, making it easier for farmers to adopt sustainable practices. It's user-friendly and highly effective."
+      name: "Maria Santos",
+      location: "Brazil",
+      image: "https://images.pexels.com/photos/1102341/pexels-photo-1102341.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
+      quote: "The precision soil analytics helped me understand my land better than ever. My soybean harvest improved significantly, and I'm contributing to sustainable farming practices.",
+      crop: "Soybean Producer"
     },
     {
-      name: "Ramesh Patel",
-      state: "Gujarat",
-      occ: "Small-scale Farmer",
-      msg: "Using Fasal Sarathi has simplified the entire fertilization process for me. Before, I was always confused about the right amount of fertilizer to use. Now, I have a reliable guide that helps me use just the right amount, resulting in healthier crops and reduced costs."
+      name: "David Thompson",
+      location: "Iowa, USA",
+      image: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
+      quote: "As a corn farmer, I was skeptical about AI recommendations. But Fasal-Sarathi's insights have consistently outperformed my traditional methods. Highly recommended!",
+      crop: "Corn Producer"
     },
     {
-      name: "Dr. Priya Verma",
-      state: "Punjab",
-      occ: "Agricultural Scientist",
-      msg: "Fasal Sarathi is a remarkable innovation in precision agriculture. It empowers farmers with data-driven decisions for fertilizer application, ensuring optimal crop growth and environmental sustainability. It's a win-win for both farmers and the ecosystem."
-    },
-    {
-      name: "Amit Singh",
-      state: "Haryana",
-      occ: "Commercial Farmer",
-      msg: "The predictions from Fasal Sarathi have been incredibly accurate. Since I started using it, I've noticed a 15% increase in crop yield and a significant reduction in fertilizer expenses. It's an essential tool for any farmer looking to optimize their farming operations."
-    },
-    {
-      name: "Suresh Choudhary",
-      state: "Rajasthan",
-      occ: "Organic Farmer",
-      msg: "As an organic farmer, I'm very cautious about the inputs I use. Fasal Sarathi provides tailored recommendations that align with my organic farming practices, helping me maintain soil fertility while ensuring a good harvest. It's been a great support system for my farm."
-    },
-    {
-      name: "Nirmala Devi",
-      state: "Karnataka",
-      occ: "Agricultural Cooperative Leader",
-      msg: "Fasal Sarathi has brought a revolutionary change in our community. Farmers now have access to scientific fertilizer recommendations, which has led to better crop quality and yield. The community's income has improved, and the soil's long-term health is being preserved."
-    },
-    {
-      name: "Mohan Rao",
-      state: "Andhra Pradesh",
-      occ: "Farmer",
-      msg: "With Fasal Sarathi, I have finally found a solution that understands the unique needs of my crops. It provides accurate fertilizer suggestions that match my soil type, and I've seen a noticeable improvement in both crop health and yield."
-    },
-    {
-      name: "Deepak Mehta",
-      state: "West Bengal",
-      occ: "Agritech Enthusiast",
-      msg: "Fasal Sarathi is an excellent example of how technology can benefit agriculture. It provides reliable and easy-to-understand recommendations, making advanced agricultural practices accessible to even small-scale farmers. It's transforming the way we farm."
-    },
-    {
-      name: "Kavita Joshi",
-      state: "Madhya Pradesh",
-      occ: "Farming Consultant",
-      msg: "I recommend Fasal Sarathi to all the farmers I work with. Its accurate predictions help them use fertilizers more efficiently, reducing costs and improving yields. It’s a must-have tool for modern farming."
+      name: "Priya Patel",
+      location: "Gujarat, India",
+      image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
+      quote: "The local language support made it so easy to understand. My cotton yield improved by 25%, and I'm saving money on fertilizers. Thank you, Fasal-Sarathi!",
+      crop: "Cotton Farmer"
     }
   ];
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   return (
-    <div className="w-full lg:h-auto xl:h-auto flex flex-col justify-center items-center mb-10">
-      <div className="lg:w-[90%] xl:w-[90%] w-[90%] h-full rounded-3xl lg:py-6 lg:px-10">
-        <h1 className="lg:text-5xl text-3xl font-extrabold text-center mb-8">
-          Testimonials
-        </h1>
-
-        <div className="relative w-full">
-          <button
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-[#06a751] text-white px-4 py-2 rounded-full shadow-md hover:bg-[#034633FF] z-10"
-            onClick={scrollLeft}
-          >
-            {"<"}
-          </button>
-          <button
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#06a751] text-white px-4 py-2 rounded-full shadow-md hover:bg-[#034633FF] z-10"
-            onClick={scrollRight}
-          >
-            {">"}
-          </button>
-
-          <div
-            ref={scrollRef}
-            className="w-full flex gap-4 overflow-x-auto lg:py-16 py-4 no-scrollbar scroll-smooth"
-          >
-            {testimonials.map((testimonial, index) => (
-              <Card
-              key={index}
-              name={testimonial.name}
-              state={testimonial.state}
-              occ={testimonial.occ}
-              msg={testimonial.msg}
-            />
-          ))}
+    <section className="py-20 bg-transparent">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            What Farmers Are Saying
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Join thousands of farmers who have transformed their agricultural practices with Fasal-Sarathi
+          </p>
+        </div>
+        
+        <div className="max-w-4xl mx-auto relative">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg overflow-hidden">
+            <div className="p-8 md:p-12">
+              <div className="flex items-center mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              
+              <blockquote className="text-xl md:text-2xl text-gray-800 mb-8 leading-relaxed">
+                &quot;{testimonials[currentIndex].quote}&quot;
+              </blockquote>
+              
+              <div className="flex items-center">
+                <img 
+                  src={testimonials[currentIndex].image} 
+                  alt={testimonials[currentIndex].name}
+                  className="w-16 h-16 rounded-full object-cover mr-4 shadow-md"
+                />
+                <div>
+                  <h4 className="font-semibold text-gray-900 text-lg">
+                    {testimonials[currentIndex].name}
+                  </h4>
+                  <p className="text-green-600 font-medium">
+                    {testimonials[currentIndex].crop}
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    {testimonials[currentIndex].location}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex justify-between items-center mt-8">
+            <button 
+              onClick={prevSlide}
+              className="bg-white hover:bg-gray-50 border-2 border-gray-200 rounded-full p-3 shadow-md transition-all duration-300 transform hover:scale-105"
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-600" />
+            </button>
+            
+            <div className="flex space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex ? 'bg-green-600' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <button 
+              onClick={nextSlide}
+              className="bg-white hover:bg-gray-50 border-2 border-gray-200 rounded-full p-3 shadow-md transition-all duration-300 transform hover:scale-105"
+            >
+              <ChevronRight className="w-6 h-6 text-gray-600" />
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Testimonials;
-

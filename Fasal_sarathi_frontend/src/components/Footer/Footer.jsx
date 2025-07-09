@@ -1,79 +1,110 @@
 
-import { Logo, Button } from "../index";
-import footerLogo from "../../assets/footer-logo.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Logo } from "../index";
+import footerLogo from "../../assets/logo-img2.png";
+import { Link } from "react-router-dom";
+
+
+import {  Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+
 const Footer = () => {
-  const navigate = useNavigate();
-  const navLink = [
-    {
-      id: 1,
-      name: "Blog",
-      path: "/#",
-    },
-    {
-      id: 2,
-      name: "Centers",
-      path: "/#",
-    },
-    {
-      id: 3,
-      name: "Feedback",
-      path: "/#",
-    },
-    {
-      id: 4,
-      name: "policy",
-      path: "/#",
-    },
-    {
-      id: 5,
-      name: "terms & conditions",
-      path: "/#",
-    },
-  ];
-
   return (
-    <div className="bg-[#055c43] pt-4 pb-4 px-3 w-full">
-      <div className="flex flex-col md:flex-row justify-center md:justify-around items-center w-full lg:w-[80%] mx-auto">
-        <div className="w-32 md:w-40 mb-4 md:mb-0">
-          <Link to={"/"}>
-            <Logo className={"w-full h-auto"} imgUrl={footerLogo} />
-          </Link>
+    <footer className="bg-gray-900 text-white px-10">
+      <div className="container mx-auto px-4 py-8 ">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center mb-3">
+              <Link to={"/"}>
+            <Logo className={"w-24 h-24"} imgUrl={footerLogo} />
+        </Link>
+              <h3 className="text-3xl font-extrabold">Fasal-Sarathi</h3>
+            </div>
+            <p className="text-gray-300 mb-6 max-w-md">
+              Empowering farmers with AI-driven fertilizer recommendations for sustainable agriculture 
+              and improved crop yields. Growing smart, growing sustainably.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="bg-gray-800 hover:bg-green-600 p-3 rounded-lg transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="bg-gray-800 hover:bg-green-600 p-3 rounded-lg transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="bg-gray-800 hover:bg-green-600 p-3 rounded-lg transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="bg-gray-800 hover:bg-green-600 p-3 rounded-lg transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">How It Works</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Features</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Testimonials</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Blog</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Support</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">FAQ</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-green-400 transition-colors">Help Center</a></li>
+            </ul>
+          </div>
         </div>
-
-        <div className=" w-full md:w-auto flex justify-center md:justify-end">
-          <ul className="flex gap-4 md:gap-6 lg:gap-8 flex-wrap justify-start md:font-semibold text-center text-sm lg:text-xl ">
-            {navLink.map(({ id, name, path }) => {
-              return (
-                <li
-                  key={id}
-                  className="text-white hover:underline cursor-pointer"
-                >
-                  <Link to={path}>{name}</Link>
-                </li>
-              );
-            })}
-          </ul>
+        
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Contact Information</h4>
+              <div className="space-y-3">
+                <div className="flex items-center">
+                  <Mail className="w-5 h-5 text-green-400 mr-3" />
+                  <span className="text-gray-300">support@fasal-sarathi.com</span>
+                </div>
+                <div className="flex items-center">
+                  <Phone className="w-5 h-5 text-green-400 mr-3" />
+                  <span className="text-gray-300">+1 (555) 123-4567</span>
+                </div>
+                <div className="flex items-center">
+                  <MapPin className="w-5 h-5 text-green-400 mr-3" />
+                  <span className="text-gray-300">123 Agriculture Street, Farm City, FC 12345</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
+              <p className="text-gray-300 mb-4">Subscribe to get the latest updates and farming tips.</p>
+              <div className="flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 border border-gray-700 focus:border-green-500 focus:outline-none text-white"
+                />
+                <button className="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-r-lg transition-colors">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <Button
-            btnname="Click Here"
-            className="bg-[#0f944d] rounded-full border-none px-5 lg:px-7 py-3 text-sm lg:text-xl font-semibold text-white hover:bg-[#034633FF] hidden md:flex items-center justify-center "
-            onClickHandler={() => {
-              navigate("/user-input-form");
-            }}
-          />
-        </div>
-      </div>
-
-      <div className="mt-4 md:mt-[-10px] lg:mt-[-35px]">
-        <div className="lg:w-[80%] w-full mx-auto">
-          <p className="text-white text-center text-sm md:text-base lg:text-lg font-normal md:font-semibold">
-            Copyright © 2024. All rights reserved by Fasal Sarathi.
+        
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p className="text-gray-400">
+            &copy; 2025 Fasal-Sarathi. All rights reserved. Made with ❤️ for farmers worldwide.
           </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

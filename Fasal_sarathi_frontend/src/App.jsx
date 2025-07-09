@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { PrivateRoute } from "./components/index.js";
 import HistoryPage from "./pages/History.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Gallery from "./pages/Gallery.jsx";
+import Feedback from "./pages/Feedback.jsx";
 
 function App() {
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -42,10 +44,24 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-              
-                <Dashboard />
-             
+                <Dashboard />            
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <Container>
+              <Gallery />          
+            </Container>
+          }
+        />
+        <Route
+          path="/feedback"
+          element={
+            <Container>
+              <Feedback />
+            </Container>          
           }
         />
 

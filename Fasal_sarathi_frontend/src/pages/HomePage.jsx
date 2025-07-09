@@ -7,6 +7,8 @@ import FeedbackForm from "../components/FeedbackForm.jsx";
 import { apiClient } from "../lib/api-client.js";
 import { CURRENT_USER_ROUTES } from "../utils/constrants.js";
 import TypedAnimation from "../components/TypedAnimation.jsx";
+import Process from "../components/process.jsx";
+import Features from "../components/Features.jsx";
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -29,41 +31,35 @@ const HomePage = () => {
     })();
   
   }, []);
-
+// bg-[size:6rem_4rem] bg-white bg-[linear-gradient(to_right,#aaa_1px,transparent_1px),linear-gradient(to_bottom,#aaa_1px,transparent_1px)]
   return (
-    <div className="relative w-full min-h-screen bg-[size:6rem_4rem] bg-white bg-[linear-gradient(to_right,#aaa_1px,transparent_1px),linear-gradient(to_bottom,#aaa_1px,transparent_1px)]
- ">
+    <div className="relative w-full min-h-screen bg-gradient-to-br from-green-200 via-[#FFF9E3] to-[#faf5e4d2]">
       <Header />
-      <div className="w-full ">
-        
-        <div className="h-[35vh] md:h-[33vh] lg:h-[46vh] xl:h-[70vh] w-full">
-          <div className="flex flex-col items-center justify-center h-full px-4">
-           
-            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-7xl font-extrabold text-center w-[90%] md:w-[70%] lg:w-[65%] leading-tight lg:leading-snug xl:leading-snug">
+      <div className="w-full">
+          <div className="flex flex-col items-center justify-center h-full px-4 py-8">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-center w-[70%] leading-tight lg:leading-snug xl:leading-snug">
               Boost Crop Yield, Sustainably with{" "}
               {/* <span className="text-[#06a751]">Fasal Sarathi.</span> */}
               <TypedAnimation className="text-[#06a751]"/>
             </h1>
-
-            
-            <p className="text-xl md:text-2xl lg:text-2xl font-semibold text-center leading-normal mt-1 px-2 text-black/75">
-              Get Your Fertilizer Recommendations Now.
+            <p className="text-xl font-semibold  max-w-4xl text-center leading-relaxed mt-1 lg:px-12 text-gray-800">
+              AI-driven personalized fertilizer guidance for a greener tomorrow. 
+            Help farmers improve yield and soil health through smart, eco-conscious fertilizer planning.
             </p>
 
            
             <div className="mt-4 lg:mt-6">
               <Button
-                btnname="Click Here"
+                btnname="Get Started"
                 className="bg-[#0b6836] rounded-full border-none px-5 lg:px-7 py-3 text-lg lg:text-xl font-semibold text-white hover:bg-[#034633FF] flex items-center justify-center"
                 onClickHandler={() => {
                   navigate("/user-input-form");
                 }}
               />
             </div>
-          </div>
         </div>
 
-        <div className="w-full lg:h-[80vh] h-[40vh] md:h-[55vh] flex justify-center items-center mb-10 lg:mb-6 xl:mb-6  xl:mt-[-5vh]">
+        {/* <div className="w-full lg:h-[80vh] h-[40vh] md:h-[55vh] flex justify-center items-center mb-10 lg:mb-6 xl:mb-6  xl:mt-[-5vh]">
           <div className="lg:w-[80%] w-[90%] md:h-full h-full rounded-3xl ">
             <h1 className="lg:text-5xl text-3xl font-extrabold text-center ">
               How to Use
@@ -75,12 +71,13 @@ const HomePage = () => {
               ></iframe>
             </div>
           </div>
-        </div>
-
+        </div> */}
+        <Features />
+        <Process />
         <Testimonials />
-        <div className="w-full lg:h-[68vh]  flex justify-center items-center mb-10 ">
+        {/* <div className="w-full lg:h-[68vh]  flex justify-center items-center mb-10 ">
           <FeedbackForm />
-        </div>
+        </div> */}
       </div>
       <Footer />
     </div>

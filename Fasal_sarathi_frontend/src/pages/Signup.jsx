@@ -56,7 +56,7 @@ const Signup = () => {
       {error ? (
         <ErrorPage />
       ) : (
-        <div className="flex justify-center items-center min-h-screen bg-green-50">
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-200 via-[#FFF9E3] to-[#faf5e4d2]">
           <div className="w-full max-w-md bg-green-200 shadow-lg rounded-lg p-8 md:p-10">
             <h2 className="text-3xl font-extrabold text-center text-black mb-6">
               Fasal Sarathi - Sign Up

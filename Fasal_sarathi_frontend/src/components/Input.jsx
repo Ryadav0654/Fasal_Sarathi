@@ -1,5 +1,11 @@
 import React, {useId} from 'react'
+import PropTypes from 'prop-types'
 
+Input.PropTypes = {
+  className: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string
+}
 const Input = ({
     label,
     className="",

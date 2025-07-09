@@ -1,4 +1,3 @@
-import React from "react";
 import "./LoadingPage.css"; // We'll style this in a separate CSS file
 import logo from "../assets/logo.png"; // Replace this with your actual logo
 

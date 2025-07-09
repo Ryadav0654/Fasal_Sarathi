@@ -1,14 +1,15 @@
-import React,{ useState } from 'react';
+import { useState } from 'react';
 import { Button, Logo, ProfileDropdown } from "../index.js";
 import { Link, useNavigate } from "react-router-dom";
 import headerLogo from "../../assets/logo.png";
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/slice/authThunk.js';
+import { useSelector } from 'react-redux';
+// import { logout } from '../../redux/slice/authThunk.js';
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState(1);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.auth.accessToken);
   const handleActive = (id) => {
     setActiveLink(id);

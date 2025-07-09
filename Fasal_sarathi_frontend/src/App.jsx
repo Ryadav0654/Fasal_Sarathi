@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes,  Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -7,11 +6,9 @@ import Container from "./components/Container/Container";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useSelector } from "react-redux";
-
 import { PrivateRoute } from "./components/index.js";
 import HistoryPage from "./pages/History.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-
 
 function App() {
   const accessToken = useSelector((state) => state.auth.accessToken);

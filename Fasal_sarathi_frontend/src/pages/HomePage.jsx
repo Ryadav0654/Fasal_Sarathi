@@ -31,7 +31,8 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[size:6rem_4rem] bg-white  bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)]  ">
+    <div className="relative w-full min-h-screen bg-[size:6rem_4rem] bg-white bg-[linear-gradient(to_right,#aaa_1px,transparent_1px),linear-gradient(to_bottom,#aaa_1px,transparent_1px)]
+ ">
       <Header />
 
       <div className="w-full ">

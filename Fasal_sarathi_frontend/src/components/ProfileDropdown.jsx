@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/slice/authThunk";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { apiClient } from "../lib/api-client";
-import profile_pic from "../assets/Profile_pic.png";
+// import profile_pic from "../assets/Profile_pic.png";
 import { CURRENT_USER_ROUTES } from "../utils/constrants";
 
 const ProfileDropdown = () => {
@@ -61,7 +61,7 @@ useEffect(() => {
       {/* Profile Picture */}
       <div onClick={toggleDropdown} className="cursor-pointer flex items-center space-x-2 border-2 border-green-500 rounded-full ">
         <img
-          src={ "https://lh3.googleusercontent.com/ogw/AF2bZyhKTjLD9n91GRSrFuDUz5_8jLwZamHI0LEj4xnKk15faA=s32-c-mo" ||userData?.picture}
+          src={userData ? userData?.picture : "https://lh3.googleusercontent.com/ogw/AF2bZyhKTjLD9n91GRSrFuDUz5_8jLwZamHI0LEj4xnKk15faA=s32-c-mo"}
           alt="Profile"
           className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-4 border-white"
         />

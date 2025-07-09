@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  {  useState } from "react";
 import { Button, ErrorPage, Input, LoadingPage } from "../components/index.js";
 import { useForm } from "react-hook-form";
 import bgImg from "../assets/bg-image1.jpg";
@@ -151,7 +151,7 @@ const Login = () => {
                 {/* Sign Up Redirect */}
                 <div className="font-medium mt-4">
                   <p className="text-center">
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <Link
                       to="/signup"
                       className="text-green-600 hover:text-green-700 font-bold"

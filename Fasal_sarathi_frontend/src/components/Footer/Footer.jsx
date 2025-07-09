@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Logo, Button } from "../index";
 import footerLogo from "../../assets/footer-logo.jpg";
 import { Link, useNavigate } from "react-router-dom";

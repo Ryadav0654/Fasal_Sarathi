@@ -7,7 +7,7 @@ import FeedbackForm from "../components/FeedbackForm.jsx";
 import { apiClient } from "../lib/api-client.js";
 import { CURRENT_USER_ROUTES } from "../utils/constrants.js";
 import TypedAnimation from "../components/TypedAnimation.jsx";
-import Process from "../components/process.jsx";
+import Process from "../components/Process.jsx";
 import Features from "../components/Features.jsx";
 const HomePage = () => {
   const navigate = useNavigate();

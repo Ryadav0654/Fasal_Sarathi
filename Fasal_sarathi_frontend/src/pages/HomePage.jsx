@@ -34,7 +34,6 @@ const HomePage = () => {
     <div className="relative w-full min-h-screen bg-[size:6rem_4rem] bg-white bg-[linear-gradient(to_right,#aaa_1px,transparent_1px),linear-gradient(to_bottom,#aaa_1px,transparent_1px)]
  ">
       <Header />
-
       <div className="w-full ">
         
         <div className="h-[35vh] md:h-[33vh] lg:h-[46vh] xl:h-[70vh] w-full">

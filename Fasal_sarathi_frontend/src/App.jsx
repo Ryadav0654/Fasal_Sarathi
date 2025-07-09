@@ -17,8 +17,6 @@ function App() {
     return !accessToken ? children : <Navigate to="/" />;
   };
 
-
-
   return (
     <BrowserRouter>
       <Routes>

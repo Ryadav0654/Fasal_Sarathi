@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useCallback, useEffect } from "react";
 import { logout } from "../redux/slice/authThunk";
 import {jwtDecode} from "jwt-decode";
-import PropTypes from "prop-types";
 
-PrivateRoute.propTypes = {
-  children: PropTypes.node
-}
 const PrivateRoute = ({ children }) => {
   const isTokenExpired = useCallback((token) => {
     try {

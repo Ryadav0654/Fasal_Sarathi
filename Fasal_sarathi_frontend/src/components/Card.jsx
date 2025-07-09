@@ -1,11 +1,4 @@
-import PropTypes from "prop-types";
 
-Card.propTypes = {
-  name: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
-  occ: PropTypes.string.isRequired,
-  msg: PropTypes.string.isRequired,
-};
 const Card = ({name, state, occ, msg}) => {
   return (
     <>

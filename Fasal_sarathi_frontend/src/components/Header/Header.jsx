@@ -49,7 +49,7 @@ const Header = () => {
 
         <div className="flex-shrink-0">
           <Link to={"/"}>
-            <Logo className={"w-28 h-24"} imgUrl={headerLogo} />
+            <Logo className={"w-24 h-20"} imgUrl={headerLogo} />
           </Link>
         </div>
 

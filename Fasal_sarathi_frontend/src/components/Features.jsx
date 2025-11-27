@@ -26,13 +26,13 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-16 bg-transparent px-8">
+    <section className="py-8 md:py-12 bg-transparent px-4 md:px-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Why Choose Fasal-Sarathi?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Harness the power of artificial intelligence to transform your farming practices 
             and achieve sustainable agricultural success.
           </p>

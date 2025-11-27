@@ -7,7 +7,7 @@ const TypedAnimation = ({className}) => {
 
    React.useEffect(() => {
      const typed = new Typed(el.current, {
-       strings: ['Fasal Sarathi.'],
+       strings: ['Fasal Sarathi', 'Sustainable Agriculture', 'Smart Farming', 'Crop Yield Optimization', 'Fertilizer Savings', 'Eco-Friendly Practices', 'Cost-Effective Solutions', 'Fasal Sarathi...'],
        typeSpeed: 100,
      });
  

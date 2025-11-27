@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, register as signup } from "../redux/slice/authThunk";
+// import { login, register as signup } from "../redux/slice/authThunk";
 import { useNavigate } from "react-router-dom";
 import { ErrorPage, LoadingPage } from "../components/index.js";
 

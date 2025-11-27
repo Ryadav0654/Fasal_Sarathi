@@ -1,19 +1,15 @@
 import { useState } from 'react';
-import { Button, Logo, ProfileDropdown } from "../index.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Logo } from "../index.js";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import headerLogo from "../../assets/logo-img2.png";
 import { useSelector } from 'react-redux';
-// import { logout } from '../../redux/slice/authThunk.js';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState(1);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  const accessToken = useSelector((state) => state.auth.accessToken);
-  const handleActive = (id) => {
-    setActiveLink(id);
-  };
+  const location = useLocation();
+  // const accessToken = localStorage.getItem('accessToken');
+  const {isAuthenticated} = useSelector((state) => state.auth);
 
   const navLink = [
     {
@@ -23,28 +19,18 @@ const Header = () => {
     },
     {
       id: 2,
-      name: "Blogs",
-      path: "/#",
+      name: "Predict",
+      path: "/user-input-form",
     },
     {
       id: 3,
-      name: "History",
-      path: "/history",
-    },
-    {
-      id: 4,
       name: "Feedback",
       path: "/feedback",
     },
     {
-      id: 5,
+      id: 4,
       name: "Gallery",
       path: "/gallery",
-    },
-    {
-      id: 6,
-      name: "Centers",
-      path: "/#",
     },
   ];
 
@@ -86,12 +72,13 @@ const Header = () => {
         <div className="hidden md:flex">
           <ul className="flex gap-10 justify-center items-center font-medium lg:text-xl">
             {navLink.map(({ id, name, path }) => {
+               const isActive = location.pathname === path;
               return (
                 <li
                   key={id}
                   className={`text-[#06a751] 
                                 ${
-                                  activeLink === id
+                                 isActive
                                     ? "underline decoration-4 underline-offset-8 text-[#06a751] transition-all"
                                     : " hover:text-[#1ba84a] text-black"
                                 } 
@@ -107,28 +94,19 @@ const Header = () => {
         </div>
 
         <div className="hidden md:block">
-          {
-            accessToken ? (
-            //    <Button
-            //   btnname="Logout"
-            //   className={
-            //     "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
-            //   }
-            //   onClickHandler={() => dispatch(logout())}
-            // />
-            <ProfileDropdown />
-          ):
-            (
               <Button
-              btnname="Login"
+              btnname={isAuthenticated ? "Dashboard" : "Login"}
               className={
                 "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
               }
-              onClickHandler={() => navigate("/login")}
-            />
-            )
-          }
-         
+              onClickHandler={() => {
+                if (isAuthenticated) {
+                  navigate("/dashboard");
+                } else {
+                  navigate("/login");
+                }
+              }}
+            /> 
         </div>
       </div>
 
@@ -137,12 +115,13 @@ const Header = () => {
         <div className="md:hidden mt-3">
           <ul className="flex flex-col gap-4 items-center">
             {navLink.map(({ id, name, path }) => {
+              const isActive = location.pathname === path;
               return (
                 <li
                   key={id}
                   className={`text-[#06a751] 
                                 ${
-                                  activeLink === id
+                                  isActive
                                     ? "underline decoration-4 underline-offset-8 text-[#06a751] transition-all"
                                     : " hover:text-[#1ba84a] text-black"
                                 } 
@@ -161,33 +140,20 @@ const Header = () => {
 
         
           <div className="mt-4 flex justify-center">
-            {
-              (!accessToken) ? ( 
-              <Button
-              btnname="Login"
+             <Button
+              btnname={isAuthenticated ? "Dashboard" : "Login"}
               className={
-                "bg-[#0b6836] rounded-full border-none px-6 py-2 text-lg text-white hover:bg-[#034633FF] "
+                "bg-[#0b6836] rounded-full border-none md:px-6 md:py-2 lg:px-8 lg:py-3 text-xl flex items-center justify-center lg:font-medium text-white hover:bg-[#034633FF] "
               }
               onClickHandler={() => {
-                navigate("/login");
-                setIsMobileMenuOpen(false); 
+                if (isAuthenticated) {
+                  navigate("/dashboard");
+                } else {
+                  navigate("/login");
+                }
               }}
-            />
-          ) :
-            (
-              <ProfileDropdown />
-            // <Button
-            //   btnname="Logout"
-            //   className={
-            //     "bg-[#0b6836] rounded-full border-none px-6 py-2 text-lg text-white hover:bg-[#034633FF] "
-            //   }
-            //   onClickHandler={() => {
-            //     dispatch(logout());
-            //     setIsMobileMenuOpen(false); 
-            //   }}
-            // />
-          )
-            }
+            /> 
+          
            
           </div>
         </div>

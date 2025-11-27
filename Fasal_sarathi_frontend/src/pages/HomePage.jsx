@@ -3,34 +3,12 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import { Button,  Testimonials } from "../components/index.js";
 import { useNavigate } from "react-router-dom";
-import FeedbackForm from "../components/FeedbackForm.jsx";
-import { apiClient } from "../lib/api-client.js";
-import { CURRENT_USER_ROUTES } from "../utils/constrants.js";
 import TypedAnimation from "../components/TypedAnimation.jsx";
 import Process from "../components/Process.jsx";
 import Features from "../components/Features.jsx";
 const HomePage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    (async () =>{
-      try {
-        const userdata = await apiClient.get(CURRENT_USER_ROUTES, {
-          withCredentials: true,
-        });
-        if(userdata.data)
-          {
-            localStorage.setItem('accessToken', userdata.data.accessToken);  
-              
-          } 
-        // console.log( userdata.data.user );
-        
-      } catch (error) {
-        console.log("userdata error", error);
-      }
-    })();
-  
-  }, []);
 // bg-[size:6rem_4rem] bg-white bg-[linear-gradient(to_right,#aaa_1px,transparent_1px),linear-gradient(to_bottom,#aaa_1px,transparent_1px)]
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-br from-green-200 via-[#FFF9E3] to-[#faf5e4d2]">
@@ -40,6 +18,8 @@ const HomePage = () => {
             <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold text-center w-[70%] leading-tight lg:leading-snug xl:leading-snug">
               Boost Crop Yield, Sustainably with{" "}
               {/* <span className="text-[#06a751]">Fasal Sarathi.</span> */}
+            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center w-full md:w-[70%] leading-tight lg:leading-snug xl:leading-snug">
               <TypedAnimation className="text-[#06a751]"/>
             </h1>
             <p className="text-xl font-semibold  max-w-4xl text-center leading-relaxed mt-1 lg:px-12 text-gray-800">
@@ -75,9 +55,7 @@ const HomePage = () => {
         <Features />
         <Process />
         <Testimonials />
-        {/* <div className="w-full lg:h-[68vh]  flex justify-center items-center mb-10 ">
-          <FeedbackForm />
-        </div> */}
+
       </div>
       <Footer />
     </div>

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Input,
-  Button,
   Select,
   ShowRecommendentFertilizer as ShowFertilizer,
-  ErrorPage,
   LoadingPage,
 } from "../components/index.js";
 import { apiClient } from "../lib/api-client.js";
 import { PREDICTION_FERTILIZER_URL } from "../utils/constrants.js";
+import { isAxiosError } from "axios";
+import { toast } from "react-toastify";
 
 const UserInputForm = () => {
   const {
@@ -17,40 +17,53 @@ const UserInputForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    
+  });
 
   const [showFertilizer, setShowFertilizer] = useState(false);
   const [recommendateFertilizer, setRecommendateFertilizer] = useState({});
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleUserInput = async (data) => {
-    console.log("form-data: ", data);
-    setError(false);
+  const handleUserInput = async (userInputData) => {
+    console.log("form-data: ", userInputData);
     setLoading(true);
     try {
+      const { data, status } = await apiClient.post(
+        PREDICTION_FERTILIZER_URL,
+        userInputData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
 
-      const response = await apiClient.post(PREDICTION_FERTILIZER_URL, data, {
-        withCredentials: true,
-      });
-      console.log("response prediction: ", response);
-      if (response) {
-        setLoading(false);
-        setShowFertilizer(true);
-        console.log("recommendateFertilizer: ", response.data);
+      if (data && status === 200) {
+        console.log("recommendateFertilizer: ", data);
         const Fertilizer = {
-          soilType: data.Soil_Type,
-          cropType: data.Crop_Type,
-          ...response.data,
+          soilType: userInputData.Soil_Type,
+          cropType: userInputData.Crop_Type,
+          ...data,
         };
         setRecommendateFertilizer(Fertilizer);
+        setShowFertilizer(true);
         reset();
+        toast.success(data.message);
       }
     } catch (error) {
+      if (isAxiosError(error)) {
+        console.log(error.response);
+        toast.error(error.response.data.message);
+      } else {
+        console.log("userInput error", error);
+        toast.error(error.message);
+      }
       setShowFertilizer(false);
-      setError(true);
       setLoading(false);
-      console.error("userInput error: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,6 +82,8 @@ const UserInputForm = () => {
     "Ground Nuts",
   ];
 
+  if(loading) return <LoadingPage />
+
   return (
     <>
       {showFertilizer && (
@@ -78,11 +93,7 @@ const UserInputForm = () => {
         />
       )}
 
-      {loading && <LoadingPage />}
-      {error ? (
-        <ErrorPage />
-      ) : (
-        <div className="w-full mb-16 ">
+        <div className="w-full mb-16">
           <div className=" flex flex-col justify-center items-center md:pt-5 ">
             <h1 className="lg:text-4xl text-3xl font-extrabold pt-3 text-center">
               Get Your Fertilizer Recommendations
@@ -92,36 +103,48 @@ const UserInputForm = () => {
             </p>
             <form
               onSubmit={handleSubmit(handleUserInput)}
-              className="  bg-green-400 md:p-10 lg:w-[60%] md:w-[80%] m-3 p-4 rounded-xl md:rounded-2xl text-black font-semibold"
+              className="bg-transparent md:p-10 lg:w-[60%] md:w-[80%] m-3 p-4 rounded-xl md:rounded-2xl text-black font-semibold"
             >
               <div className=" grid md:grid-cols-4 grid-cols-1 gap-5">
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Temparature"}
+                    placeholder={"Temperature (°C): 10 - 50"}
                     {...register("Temparature", {
                       required: true,
+                      min: 10,
+                      max: 50,
+                      valueAsNumber: true,
                     })}
-                    className=" px-3 py-2 rounded-lg w-full"
-                    label={"Temparature"}
+                    className="px-3 py-2 rounded-lg w-full"
+                    label={"Temperature (°C)"}
                     aria-invalid={errors.Temparature ? "true" : "false"}
                   />
                   {errors.Temparature?.type === "required" && (
                     <p role="alert" className="text-red-500 font-medium">
-                      *Temparature is required
+                      *Temperature is required
                     </p>
+                  )}
+                  {errors.Temparature?.type === "min" && (
+                    <p className="text-red-500">Minimum Temperature is 10°C</p>
+                  )}
+                  {errors.Temparature?.type === "max" && (
+                    <p className="text-red-500">Maximum Temperature is 50°C</p>
                   )}
                 </div>
 
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Humidity"}
+                    placeholder={"Humidity (%): 10 - 100"}
                     {...register("Humidity", {
                       required: true,
+                      min: 10,
+                      max: 100,
+                      valueAsNumber: true,
                     })}
                     className=" px-3 py-2 rounded-lg w-full"
-                    label={"Humidity"}
+                    label={"Humidity (%)"}
                     aria-invalid={errors.Humidity ? "true" : "false"}
                   />
                   {errors.Humidity?.type === "required" && (
@@ -129,16 +152,25 @@ const UserInputForm = () => {
                       *Humidity is required
                     </p>
                   )}
+                  {errors.Humidity?.type === "min" && (
+                    <p className="text-red-500">Minimum Humidity is 10%</p>
+                  )}
+                  {errors.Humidity?.type === "max" && (
+                    <p className="text-red-500">Maximum Humidity is 100%</p>
+                  )}
                 </div>
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Moisture"}
+                    placeholder={"Moisture (%): 0 - 100"}
                     {...register("Moisture", {
                       required: true,
+                      min: 0,
+                      max: 100,
+                      valueAsNumber: true,
                     })}
                     className=" px-3 py-2 rounded-lg w-full"
-                    label={"Moisture"}
+                    label={"Moisture (%)"}
                     aria-invalid={errors.Moisture ? "true" : "false"}
                   />
                   {errors.Moisture?.type === "required" && (
@@ -146,16 +178,14 @@ const UserInputForm = () => {
                       *Moisture is required
                     </p>
                   )}
+                  {errors.Moisture?.type === "min" && (
+                    <p className="text-red-500">Minimum Moisture is 0%</p>
+                  )}
+                  {errors.Moisture?.type === "max" && (
+                    <p className="text-red-500">Maximum Moisture is 100%</p>
+                  )}
                 </div>
 
-                <div className="md:col-span-2 flex items-center md:ml-10 lg:mt-5">
-                  <Button
-                    className={
-                      "bg-[#0b6836] rounded-xl border-none lg:px-7 lg:py-2  py-2 px-3 flex items-center  md:font-medium text-white hover:bg-[#034633FF]"
-                    }
-                    btnname={"Use current location"}
-                  ></Button>
-                </div>
                 <div className="md:col-span-2">
                   <Select
                     options={soilType}
@@ -177,19 +207,28 @@ const UserInputForm = () => {
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Nitrogen(N)"}
+                    placeholder={"Nitrogen (kg/ha): 0 - 140"}
                     {...register("PresentN", {
                       required: true,
-                      max: 160,
                       min: 0,
+                      max: 140,
+                      valueAsNumber: true,
                     })}
                     className=" px-3 py-2 rounded-lg w-full"
-                    label={"Nitrogen(N)"}
+                    label={"Nitrogen (N)"}
                     aria-invalid={errors.PresentN ? "true" : "false"}
                   />
                   {errors.PresentN?.type === "required" && (
                     <p role="alert" className="text-red-500 font-medium">
-                      *Nitrogen(N) is required
+                      *Nitrogen is required
+                    </p>
+                  )}
+                  {errors.PresentN?.type === "min" && (
+                    <p className="text-red-500">Minimum Nitrogen is 0 kg/ha</p>
+                  )}
+                  {errors.PresentN?.type === "max" && (
+                    <p className="text-red-500">
+                      Maximum Nitrogen is 140 kg/ha
                     </p>
                   )}
                 </div>
@@ -197,38 +236,58 @@ const UserInputForm = () => {
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Phosphorus(P)"}
+                    placeholder={"Phosphorus (kg/ha): 0 - 100"}
                     {...register("PresentP", {
                       required: true,
                       min: 0,
-                      max: 80,
+                      max: 100,
+                      valueAsNumber: true,
                     })}
                     className=" px-3 py-2 rounded-lg w-full"
-                    label={"Phosphorus(P)"}
+                    label={"Phosphorus (P)"}
                     aria-invalid={errors.PresentP ? "true" : "false"}
                   />
                   {errors.PresentP?.type === "required" && (
                     <p role="alert" className="text-red-500 font-medium">
-                      *Phosphorus(P) is required
+                      *Phosphorus is required
+                    </p>
+                  )}
+                  {errors.PresentP?.type === "min" && (
+                    <p className="text-red-500">
+                      Minimum Phosphorus is 0 kg/ha
+                    </p>
+                  )}
+                  {errors.PresentP?.type === "max" && (
+                    <p className="text-red-500">
+                      Maximum Phosphorus is 100 kg/ha
                     </p>
                   )}
                 </div>
                 <div className="md:col-span-2">
                   <Input
                     type={"number"}
-                    placeholder={"Enter Potassium(K)"}
+                    placeholder={"Potassium (kg/ha): 0 - 400"}
                     {...register("PresentK", {
                       required: true,
                       min: 0,
-                      max: 200,
+                      max: 400,
+                      valueAsNumber: true,
                     })}
                     className=" px-3 py-2 rounded-lg w-full"
-                    label={"Potassium(K)"}
+                    label={"Potassium (K)"}
                     aria-invalid={errors.PresentK ? "true" : "false"}
                   />
                   {errors.PresentK?.type === "required" && (
                     <p role="alert" className="text-red-500 font-medium">
-                      *Potassium(K) is required
+                      *Potassium is required
+                    </p>
+                  )}
+                  {errors.PresentK?.type === "min" && (
+                    <p className="text-red-500">Minimum Potassium is 0 kg/ha</p>
+                  )}
+                  {errors.PresentK?.type === "max" && (
+                    <p className="text-red-500">
+                      Maximum Potassium is 400 kg/ha
                     </p>
                   )}
                 </div>
@@ -244,7 +303,6 @@ const UserInputForm = () => {
             </form>
           </div>
         </div>
-      )}
     </>
   );
 };

@@ -8,7 +8,6 @@ import Testimonials from "./Testinomials";
 import PrivateRoute from "./PrivateRoute";
 import LoadingPage from "./LoadingPage";
 import ErrorPage from "./ErrorPage";
-import ProfileDropdown from "./ProfileDropdown";
 import TypedAnimation from "./TypedAnimation";
 
 
@@ -23,6 +22,5 @@ export {
   PrivateRoute,
   LoadingPage,
   ErrorPage,
-  ProfileDropdown,
   TypedAnimation
 };

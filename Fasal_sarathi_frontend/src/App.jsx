@@ -1,23 +1,33 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes,  Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import UserInputForm from "./pages/UserInputForm";
 import Container from "./components/Container/Container";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { useSelector } from "react-redux";
-import { PrivateRoute } from "./components/index.js";
+import { useSelector, useDispatch } from "react-redux";
+import {  PrivateRoute } from "./components/index.js";
 import HistoryPage from "./pages/History.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Feedback from "./pages/Feedback.jsx";
+import { verifyToken } from "./redux/slice/AuthSlice.js";
 
+// const Dashboard = lazy(() => import("./pages/Dashboard.jsx"));
 function App() {
-  const accessToken = useSelector((state) => state.auth.accessToken);
-
+  const { token, isAuthenticated, loading, hasCheckedAuth } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
   const AuthRoute = ({ children }) => {
-    return !accessToken ? children : <Navigate to="/" />;
+    return !isAuthenticated ? children : <Navigate to="/" />;
   };
+
+  useEffect(() => {
+    if (token && !hasCheckedAuth && !loading) {
+      dispatch(verifyToken(token));
+    }
+  }, [token, hasCheckedAuth, loading, dispatch]);
 
   return (
     <BrowserRouter>
@@ -44,7 +54,7 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-                <Dashboard />            
+              <Dashboard />
             </PrivateRoute>
           }
         />
@@ -52,7 +62,7 @@ function App() {
           path="/gallery"
           element={
             <Container>
-              <Gallery />          
+              <Gallery />
             </Container>
           }
         />
@@ -61,7 +71,7 @@ function App() {
           element={
             <Container>
               <Feedback />
-            </Container>          
+            </Container>
           }
         />
 
@@ -80,7 +90,7 @@ function App() {
           element={
             <PrivateRoute>
               <Container>
-                <HistoryPage/>
+                <HistoryPage />
               </Container>
             </PrivateRoute>
           }
